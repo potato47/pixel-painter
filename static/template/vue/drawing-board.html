@@ -1,0 +1,54 @@
+<div style="width: 100%;height: 100%;display: flex;">
+    <div style="width: 300px;">
+        <ui-section header="帮助" :expand="false">
+            <ui-label value="- 按住鼠标左键绘图"></ui-label>
+            <ui-label value="- 按住Ctrl+鼠标左键擦除"></ui-label>
+            <ui-label value="- 新建画布会清空画布，谨慎操作"></ui-label>
+            - 源码：<ui-link>https://www.github.com/potato47/pixel-painter</ui-link>
+        </ui-section>
+        <ui-section header="画布配置" expand>
+            <ui-prop style="margin-top: 5px;">
+                <ui-label slot="label">网格数量</ui-label>
+                <ui-select ref="gridSize" :value="10" slot="content">
+                    <option :value="10">10x10</option>
+                    <option :value="20">20x20</option>
+                    <option :value="30">30x30</option>
+                    <option :value="40">40x40</option>
+                    <option :value="50">50x50</option>
+                </ui-select>
+            </ui-prop>
+            <ui-button class="red" style="margin-top: 5px;" @click="onBtnNewCanvas">新建画布</ui-button>
+        </ui-section>
+        <ui-section header="编辑" expand>
+            <ui-prop style="margin-top: 5px;">
+                <ui-label slot="label">显示网格</ui-label>
+                <ui-checkbox ref="showGrid" slot="content" @confirm="onCheckShowGrid" :value="true"></ui-checkbox>
+            </ui-prop>
+            <ui-prop style="margin-top: 5px;">
+                <ui-label slot="label">网格间隙</ui-label>
+                <ui-checkbox ref="hasGap" slot="content" @confirm="onCheckHasGap" :value="true"></ui-checkbox>
+            </ui-prop>
+            <ui-prop style="margin-top: 5px;">
+                <ui-label slot="label">画笔颜色</ui-label>
+                <ui-color ref="fillColor" slot="content" value="#000000ff"></ui-color>
+            </ui-prop>
+        </ui-section>
+        <ui-section header="导出配置" expand>
+            <ui-prop style="margin-top: 5px;">
+                <ui-label slot="label">图片尺寸</ui-label>
+                <ui-select ref="imageSize" :value="64" slot="content">
+                    <option :value="64">64x64</option>
+                    <option :value="128">128x128</option>
+                    <option :value="256">256x256</option>
+                    <option :value="512">512x512</option>
+                    <option :value="1024">1024x1024</option>
+                </ui-select>
+            </ui-prop>
+            <ui-button class="blue" style="margin-top: 5px;" @click="onBtnExportToProject">导出图像到当前项目</ui-button>
+            <ui-button class="green" style="margin-top: 5px;" @click="onBtnExport">导出图像到其他目录</ui-button>
+        </ui-section>
+    </div>
+    <div ref="pixelCanvasContainer" style="flex: 1;display: flex;align-items: center;justify-content: center;">
+        <canvas ref="pixelCanvas" style="border:2px solid bisque;"></canvas>
+    </div>
+</div>
